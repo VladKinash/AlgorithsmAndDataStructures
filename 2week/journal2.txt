@@ -1,0 +1,1 @@
+This week I've been developing game of life following a few guides. I also wrote code for binary search (might not be in the folder but will be added soon) and recursion
