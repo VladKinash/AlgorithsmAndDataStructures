@@ -147,6 +147,11 @@ class Graph:
         if total_likes == 0 and total_comments == 0:
             print(f"User {ida} has never interacted with user {idb}")
             return None
+            
+        elif engagement <= 0:
+            print('Cannot calculate influence since engagement is 0')
+            return None
+        
         
         return (total_likes + total_comments) / engagement
                 
