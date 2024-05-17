@@ -97,7 +97,7 @@ def menu(graph):
             default_network(graph)
             graph.assign_engagement()
             graph.assign_engagement() 
-        if command == "1":
+        elif command == "1":
             user_num = int(input("Enter the size of the network: "))
             generate_network(graph, user_num)
             graph.assign_engagement()
