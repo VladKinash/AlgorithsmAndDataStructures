@@ -6,7 +6,7 @@ from vertex import Vertex
 
 class Graph:
     def __init__(self, id) -> None:
-        self.vertices = {} #all vertices are stored in a dictionary and acessed through it too
+        self.vertices = {} 
         self.id = id
         
         
@@ -189,30 +189,32 @@ class Graph:
     
     
     def find_max_engagement_path(self, start, end):
-            """
-            DFS - Depth-First Search algorithm was used to find the way of maximum engagement.
-            it finds all possible paths and replaces an old path with a new one if its total engagement is bigger
-            """
+        """
+        DFS - Depth-First Search algorithm was used to find the way of maximum engagement.
+        it finds all possible paths and replaces an old path with a new one if its total engagement is bigger
+        """
 
-            best_path = []  #a deck that stores an empty list to store the best path
-            max_engagement = 0  #engagement is set to 0 in the begginning
+        best_path = []  #a deck that stores an empty list to store the best path
+        max_engagement = 0  #engagement is set to 0 in the beginning
 
-            def dfs(current_vertex, end_vertex, path):
-                nonlocal best_path, max_engagement
-                if current_vertex == end_vertex:
-                    #if the current vertex is the end vertex, finds the path's total engagement
-                    total_engagement = sum(self.vertices[v].engagement for v in path)
-                    if total_engagement > max_engagement:
-                        #if the engagement of current path is bigger than the engagement of the old one, replace best_path with the current path variable
-                        best_path = path
-                        max_engagement = total_engagement
-                else:
-                    #checks all unvisited neighbors 
-                    for neighbor in self.vertices[current_vertex].edges.keys():
-                        if neighbor not in path:
-                            #recursively calls function
-                            dfs(neighbor, end_vertex, path + [neighbor])
+        def dfs(current_vertex, end_vertex, path):
+            nonlocal best_path, max_engagement
+            if current_vertex == end_vertex:
+                #if the current vertex is the end vertex, finds the path's total engagement
+                total_engagement = sum(self.vertices[v].engagement for v in path)
+                if total_engagement > max_engagement:
+                    #if the engagement of current path is bigger than the engagement of the old one, replace best_path with the current path variable
+                    best_path = path
+                    max_engagement = total_engagement
+            else:
+                #checks all unvisited neighbors 
+                for neighbor in self.vertices[current_vertex].edges.keys():
+                    if neighbor not in path:
+                        #recursively calls function
+                        dfs(neighbor, end_vertex, path + [neighbor])
 
-            dfs(start, end, [start])
+        dfs(start, end, [start])
 
-            return best_path
+        if not best_path:
+            print("No path available")
+        return best_path
